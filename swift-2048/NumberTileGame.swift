@@ -24,7 +24,14 @@ class NumberTileGameViewController : UIViewController, GameModelProtocol {
     var scoreView: ScoreViewProtocol?
     
     // Width of the gameboard
-    let boardWidth: CGFloat = 230.0
+    lazy var boardWidth: CGFloat = {
+        let width = min(view.bounds.size.width, view.bounds.size.height)
+        guard width > 0 else {
+            return 230.0
+        }
+        return CGFloat(ceilf(Float(width * 0.7)))
+    }()
+    
     // How much padding to place between the tiles
     let thinPadding: CGFloat = 3.0
     let thickPadding: CGFloat = 6.0

@@ -16,6 +16,8 @@ protocol AppearanceProviderProtocol: class {
 
 class AppearanceProvider: AppearanceProviderProtocol {
     
+    var tileWidth: CGFloat = 0
+    
     // Provide a tile color for a given value
     func tileColor(_ value: Int) -> UIColor {
         switch value {
@@ -50,9 +52,13 @@ class AppearanceProvider: AppearanceProviderProtocol {
     
     // Provide the font to be used on the number tiles
     func fontForNumbers() -> UIFont {
-        if let font = UIFont(name: "HelveticaNeue-Bold", size: 20) {
+        var fontSize: CGFloat = 20
+        if tileWidth > 0 {
+            fontSize = CGFloat(floorf(Float(tileWidth * 0.33)))
+        }
+        if let font = UIFont(name: "HelveticaNeue-Bold", size: fontSize) {
             return font
         }
-        return UIFont.systemFont(ofSize: 20)
+        return UIFont.systemFont(ofSize: fontSize)
     }
 }

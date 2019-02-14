@@ -39,6 +39,7 @@ class GameboardView : UIView {
         let sideLength = padding + CGFloat(dimension) * (width + padding)
         super.init(frame: CGRect(x: 0, y: 0, width: sideLength, height: sideLength))
         layer.cornerRadius = radius
+        provider.tileWidth = tileWidth
         setupBackground(backgroundColor: backgroundColor, tileColor: foregroundColor)
     }
     
@@ -83,8 +84,8 @@ class GameboardView : UIView {
     func insertTile(at pos: (Int, Int), value: Int) {
         assert(positionIsValid(pos))
         let (row, col) = pos
-        let x = tilePadding + CGFloat(col)*(tileWidth + tilePadding)
-        let y = tilePadding + CGFloat(row)*(tileWidth + tilePadding)
+        let x = tilePadding + CGFloat(col) * (tileWidth + tilePadding)
+        let y = tilePadding + CGFloat(row) * (tileWidth + tilePadding)
         let r = (cornerRadius >= 2) ? cornerRadius - 2 : 0
         let tile = TileView(position: CGPoint(x: x, y: y), width: tileWidth, value: value, radius: r, delegate: provider)
         tile.layer.setAffineTransform(CGAffineTransform(scaleX: tilePopStartScale, y: tilePopStartScale))
