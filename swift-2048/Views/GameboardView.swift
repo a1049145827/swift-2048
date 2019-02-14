@@ -36,7 +36,7 @@ class GameboardView : UIView {
         tilePadding = padding
         cornerRadius = radius
         tiles = Dictionary()
-        let sideLength = padding + CGFloat(dimension)*(width + padding)
+        let sideLength = padding + CGFloat(dimension) * (width + padding)
         super.init(frame: CGRect(x: 0, y: 0, width: sideLength, height: sideLength))
         layer.cornerRadius = radius
         setupBackground(backgroundColor: backgroundColor, tileColor: foregroundColor)
@@ -122,8 +122,8 @@ class GameboardView : UIView {
         
         // Make the frame
         var finalFrame = tile.frame
-        finalFrame.origin.x = tilePadding + CGFloat(toCol)*(tileWidth + tilePadding)
-        finalFrame.origin.y = tilePadding + CGFloat(toRow)*(tileWidth + tilePadding)
+        finalFrame.origin.x = tilePadding + CGFloat(toCol) * (tileWidth + tilePadding)
+        finalFrame.origin.y = tilePadding + CGFloat(toRow) * (tileWidth + tilePadding)
         
         // Update board state
         tiles.removeValue(forKey: fromKey)

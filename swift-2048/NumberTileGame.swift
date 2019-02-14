@@ -94,16 +94,17 @@ class NumberTileGameViewController : UIViewController, GameModelProtocol {
         // This nested function provides the x-position for a component view
         func xPositionToCenterView(_ v: UIView) -> CGFloat {
             let viewWidth = v.bounds.size.width
-            let tentativeX = 0.5*(vcWidth - viewWidth)
+            let tentativeX = 0.5 * (vcWidth - viewWidth)
             return tentativeX >= 0 ? tentativeX : 0
         }
+        
         // This nested function provides the y-position for a component view
         func yPositionForViewAtPosition(_ order: Int, views: [UIView]) -> CGFloat {
             assert(views.count > 0)
             assert(order >= 0 && order < views.count)
-            //      let viewHeight = views[order].bounds.size.height
+            // let viewHeight = views[order].bounds.size.height
             let totalHeight = CGFloat(views.count - 1)*viewPadding + views.map({ $0.bounds.size.height }).reduce(verticalViewOffset, { $0 + $1 })
-            let viewsTop = 0.5*(vcHeight - totalHeight) >= 0 ? 0.5*(vcHeight - totalHeight) : 0
+            let viewsTop = 0.5 * (vcHeight - totalHeight) >= 0 ? 0.5 * (vcHeight - totalHeight) : 0
             
             // Not sure how to slice an array yet
             var acc: CGFloat = 0
@@ -122,8 +123,8 @@ class NumberTileGameViewController : UIViewController, GameModelProtocol {
         
         // Create the gameboard
         let padding: CGFloat = dimension > 5 ? thinPadding : thickPadding
-        let v1 = boardWidth - padding*(CGFloat(dimension + 1))
-        let width: CGFloat = CGFloat(floorf(CFloat(v1)))/CGFloat(dimension)
+        let v1 = boardWidth - padding * (CGFloat(dimension + 1))
+        let width: CGFloat = CGFloat(floorf(CFloat(v1))) / CGFloat(dimension)
         let gameboard = GameboardView(dimension: dimension,
                                       tileWidth: width,
                                       tilePadding: padding,
@@ -196,9 +197,9 @@ class NumberTileGameViewController : UIViewController, GameModelProtocol {
         let m = model!
         m.queueMove(direction: MoveDirection.up,
                     onCompletion: { (changed: Bool) -> () in
-                        if changed {
-                            self.followUp()
-                        }
+            if changed {
+                self.followUp()
+            }
         })
     }
     
@@ -208,9 +209,9 @@ class NumberTileGameViewController : UIViewController, GameModelProtocol {
         let m = model!
         m.queueMove(direction: MoveDirection.down,
                     onCompletion: { (changed: Bool) -> () in
-                        if changed {
-                            self.followUp()
-                        }
+            if changed {
+                self.followUp()
+            }
         })
     }
     
@@ -220,9 +221,9 @@ class NumberTileGameViewController : UIViewController, GameModelProtocol {
         let m = model!
         m.queueMove(direction: MoveDirection.left,
                     onCompletion: { (changed: Bool) -> () in
-                        if changed {
-                            self.followUp()
-                        }
+            if changed {
+                self.followUp()
+            }
         })
     }
     
@@ -232,9 +233,9 @@ class NumberTileGameViewController : UIViewController, GameModelProtocol {
         let m = model!
         m.queueMove(direction: MoveDirection.right,
                     onCompletion: { (changed: Bool) -> () in
-                        if changed {
-                            self.followUp()
-                        }
+            if changed {
+                self.followUp()
+            }
         })
     }
     
@@ -265,4 +266,3 @@ class NumberTileGameViewController : UIViewController, GameModelProtocol {
         b.insertTile(at: location, value: value)
     }
 }
-
